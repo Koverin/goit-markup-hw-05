@@ -15,6 +15,7 @@
   --icon-cl: #afb1b8;
   --Raleway-txt: "Raleway", sans-serif;
   --Roboro-txt: "Roboto", sans-serif;
+  --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body {
@@ -75,7 +76,6 @@ ul {
   list-style: none;
 }
 
-
 .contact-list-item:not(:last-child) {
   margin-right: 50px;
 }
@@ -113,6 +113,8 @@ ul {
   letter-spacing: 0.02em;
   color: var(--text-color);
   text-decoration: none;
+
+  transition: color 250ms var(--timing-function);
 }
 
 .address-link {
@@ -130,6 +132,24 @@ ul {
   color: var(--additional-cl);
 }
 
+.link.current {
+  position: relative;
+}
+
+.link.current::after {
+  content: "";
+
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+
+  display: block;
+  width: 100%;
+  height: 4px;
+  background-color: var(--additional-cl);
+  border-radius: 2px;
+}
+
 .link:hover,
 .link:focus {
   color: var(--additional-cl);
@@ -141,10 +161,9 @@ ul {
 }
 
 .contact-link:hover .contact-icon,
-.contact-link:focus .contact-icon{
+.contact-link:focus .contact-icon {
   fill: var(--additional-cl);
 }
-
 
 .contact-link {
   display: flex;
@@ -159,10 +178,14 @@ ul {
   letter-spacing: 0.02em;
   text-decoration: none;
   color: var(--subtext-color);
+
+  transition: color 250ms var(--timing-function);
 }
 
 .contact-icon {
   fill: var(--subtext-color);
+
+  transition: fill 250ms var(--timing-function);
 }
 
 /* .contact-icon:hover,
@@ -177,6 +200,8 @@ ul {
   line-height: calc(24 / 14);
   text-decoration: none;
   color: var(--subtext-color);
+
+  transition: color 250ms var(--timing-function);
 }
 
 .footer-link:hover,
@@ -243,6 +268,9 @@ ul {
   border-color: transparent;
   border-radius: 4px;
   cursor: pointer;
+
+  transition: background-color 250ms var(--timing-function),
+    box-shadow 250ms var(--timing-function);
 }
 
 .section-btn:hover,
@@ -250,6 +278,59 @@ ul {
   background-color: var(--active-btn-cl);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
   border-radius: 4px;
+}
+
+/* modal-window */
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+
+  transition: opacity 250ms,
+  visibility 250ms;
+}
+
+.backdrop.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 528px;
+  height: 581px;
+
+  background-color: var(--main-bg-cl);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+
+}
+
+.modal-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 30px;
+  height: 30px;
+  background-color: var(--main-bg-cl);
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 }
 
 /* прихованний заголовок */
@@ -461,6 +542,8 @@ ul {
   height: 44px;
 
   border-radius: 50%;
+
+  transition: background-color 250ms var(--timing-function);
 }
 
 .link-icon:hover,
@@ -475,6 +558,8 @@ ul {
 
 .socials-icon {
   fill: var(--icon-cl);
+
+  transition: fill 250ms var(--timing-function);
 }
 
 /* Постійні клієнти */
@@ -508,8 +593,8 @@ ul {
 }
 
 .client-item {
-   width: 170px;
-   height: 92px;
+  width: 170px;
+  height: 92px;
 }
 
 .client-link:hover,
@@ -518,10 +603,9 @@ ul {
 }
 
 .client-link:hover .client-icon,
-.client-link:focus .client-icon{
+.client-link:focus .client-icon {
   fill: var(--additional-cl);
 }
-
 
 .client-link {
   display: flex;
@@ -531,11 +615,12 @@ ul {
   height: 92px;
   border: 1px solid #afb1b8;
   border-radius: 4px;
-  
 }
 
 .client-icon {
   fill: var(--icon-cl);
+
+  transition: fill 250ms var(--timing-function);
 }
 
 /* footer */
@@ -608,6 +693,8 @@ ul {
   height: 44px;
 
   border-radius: 50%;
+
+  transition: background-color 250ms var(--timing-function);
 }
 
 .footer-socials-icon {
@@ -637,6 +724,21 @@ ul {
 
 .list .link.carrent {
   color: var(--additional-cl);
+  position: relative;
+}
+
+.link.carrent::after {
+  content: "";
+
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+
+  display: block;
+  width: 100%;
+  height: 4px;
+  background-color: var(--additional-cl);
+  border-radius: 2px;
 }
 
 .section-port {
@@ -673,6 +775,10 @@ ul {
   border-radius: 4px;
   border-color: transparent;
   cursor: pointer;
+
+  transition: color 250ms var(--timing-function),
+    background-color 250ms var(--timing-function),
+    box-shadow 250ms var(--timing-function);
 }
 
 .btn:hover,
@@ -732,10 +838,11 @@ ul {
   width: calc(100% / 3 - 30px);
 }
 
-
 .proj-link {
   display: block;
   text-decoration: none;
+
+  transition: box-shadow 250ms var(--timing-function);
 }
 
 .proj-link:hover,
