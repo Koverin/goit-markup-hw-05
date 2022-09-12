@@ -648,6 +648,8 @@ ul {
   height: 92px;
   border: 1px solid #afb1b8;
   border-radius: 4px;
+
+  transition: border var(--timing-function);
 }
 
 .client-icon {
@@ -910,7 +912,8 @@ ul {
   transition: transform var(--timing-function);
 }
 
-.proj-item:hover .overlay {
+.proj-link:hover .overlay,
+.proj-link:focus .overlay {
   transform: translateY(0%);
 }
 
